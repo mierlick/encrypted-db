@@ -64,7 +64,7 @@ public class AccountTest extends BaseTest {
 
 
     @Test
-    void should() throws SQLException {
+    void shouldRetrieveAccountRecords() throws SQLException {
         insertRecords();
 
         LOG.info("*************Retrieved Customer with Encryption Enabled*************");

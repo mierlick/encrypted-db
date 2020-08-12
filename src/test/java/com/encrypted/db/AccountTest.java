@@ -58,8 +58,8 @@ public class AccountTest extends BaseTest {
 
     @BeforeEach
     public void setUp() {
-        encryptedCustomerDAO = new CustomerDAO(msSqlServerEncryptedTestDatasource());
-        unencryptedCustomerDAO = new CustomerDAO(msSqlServerUnencryptedTestDatasource());
+        encryptedCustomerDAO = new CustomerDAO(msSqlServerAlwaysEncryptedEnabledTestDatasource());
+        unencryptedCustomerDAO = new CustomerDAO(msSqlServerAlwaysEncryptedDisabledTestDatasource());
     }
 
 

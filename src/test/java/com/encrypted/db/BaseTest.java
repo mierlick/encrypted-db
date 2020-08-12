@@ -55,10 +55,10 @@ public class BaseTest {
     }
 
     protected static SQLServerConnection getMSSQLConnection() throws Exception {
-        return (SQLServerConnection) msSqlServerEncryptedTestDatasource().getConnection();
+        return (SQLServerConnection) msSqlServerAlwaysEncryptedEnabledTestDatasource().getConnection();
     }
 
-    protected static SQLServerDataSource msSqlServerEncryptedTestDatasource() {
+    protected static SQLServerDataSource msSqlServerAlwaysEncryptedEnabledTestDatasource() {
         SQLServerDataSource sqlServerDataSource = new SQLServerDataSource();
         sqlServerDataSource.setURL(MS_SQL_SERVER.getJdbcUrl());
         sqlServerDataSource.setPassword(MS_SQL_SERVER.getPassword());
@@ -71,7 +71,7 @@ public class BaseTest {
         return sqlServerDataSource;
     }
 
-    protected static SQLServerDataSource msSqlServerUnencryptedTestDatasource() {
+    protected static SQLServerDataSource msSqlServerAlwaysEncryptedDisabledTestDatasource() {
         SQLServerDataSource sqlServerDataSource = new SQLServerDataSource();
         sqlServerDataSource.setURL(MS_SQL_SERVER.getJdbcUrl());
         sqlServerDataSource.setPassword(MS_SQL_SERVER.getPassword());

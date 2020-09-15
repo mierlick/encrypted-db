@@ -46,6 +46,11 @@ public class AlwaysEncrypted {
      */
     private static final String ALGORITHM = "RSA_OAEP";
 
+    /**
+     * Main method of the application. Use this method to create the Column Encryption Key.
+     *
+     * @param args arguments
+     */
     public static void main(String[] args) {
         String connectionUrl = String.format("jdbc:sqlserver://%s:%s;user=%s;password=%s;columnEncryptionSetting=Enabled;",
                 DB_SERVER, DB_PORT, DB_USER, DB_PASSWORD);
@@ -84,6 +89,13 @@ public class AlwaysEncrypted {
         }
     }
 
+    /**
+     * This method is used to create the encrypted value.
+     *
+     * @param storeProvider SQL Server Column Encryption Key Store Provider used to create encrypted value
+     * @return encrypted value to be stored in the SQL Server DB
+     * @throws SQLServerException thrown if error creating encryption value
+     */
     private static byte[] getEncryptedCEK(SQLServerColumnEncryptionKeyStoreProvider storeProvider)
             throws SQLServerException {
 
@@ -93,11 +105,14 @@ public class AlwaysEncrypted {
         byte[] plainCEK = plainTextKey.getBytes();
 
         // This will give us encrypted column encryption key in bytes
-        byte[] encryptedCEK = storeProvider.encryptColumnEncryptionKey(KEY_ALIAS, ALGORITHM, plainCEK);
-
-        return encryptedCEK;
+        return storeProvider.encryptColumnEncryptionKey(KEY_ALIAS, ALGORITHM, plainCEK);
     }
 
+    /**
+     * Convert a byte array to hex string.  The hex string will be stored in the database.
+     * @param a byte array to convert
+     * @return hex string
+     */
     private static String byteArrayToHex(byte[] a) {
         StringBuilder sb = new StringBuilder(a.length * 2);
         for (byte b : a)

@@ -58,6 +58,12 @@ public class BaseTest {
         return (SQLServerConnection) msSqlServerAlwaysEncryptedEnabledTestDatasource().getConnection();
     }
 
+    /**
+     * Create a SQL Server Data Source with Always Encrypted Enabled.
+     * Using this data source we will be able to see the unencrypted values
+     *
+     * @return SQL Server Data Source
+     */
     protected static SQLServerDataSource msSqlServerAlwaysEncryptedEnabledTestDatasource() {
         SQLServerDataSource sqlServerDataSource = new SQLServerDataSource();
         sqlServerDataSource.setURL(MS_SQL_SERVER.getJdbcUrl());
@@ -71,6 +77,12 @@ public class BaseTest {
         return sqlServerDataSource;
     }
 
+    /**
+     * Create a SQL Server Data Source with Always Encrypted Disabled.
+     * Using this data source we will be able to see the encrypted value that is stored in the database
+     *
+     * @return SQL Server Data Source
+     */
     protected static SQLServerDataSource msSqlServerAlwaysEncryptedDisabledTestDatasource() {
         SQLServerDataSource sqlServerDataSource = new SQLServerDataSource();
         sqlServerDataSource.setURL(MS_SQL_SERVER.getJdbcUrl());
